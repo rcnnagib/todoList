@@ -1,0 +1,78 @@
+<!--widget para edicao das tarefas-->
+<po-widget class="task"
+  p-height="10"
+  
+  [p-title]= "title"
+  p-help="help"
+  (p-title-action)="editTask()"
+  [p-primary-label]="labelExcluir"
+  (p-primary-action)="excluir()">
+
+  <po-info
+    [p-label]="task.label + ' ' + task.date"
+    [p-value]="task.value">
+  </po-info>                  
+</po-widget>
+
+<!--Modal para Edicao das tarefas-->
+<po-modal
+  [p-title]="task.label"
+  [p-primary-action]="confirm"
+  [p-secondary-action]="close">
+  
+  <form #optionsForm="ngForm">
+  
+    <!--Tarefa-->
+    <po-input
+      class="po-md-6"
+      name="label"
+      [(ngModel)]="newTask.label"
+      p-clean
+      p-label="Tarefa"
+      p-required>
+    </po-input>
+
+    <!--Detalhes da Tarefa-->
+    <div class="po-row">
+      <po-textarea
+        class="po-md-12"
+        name="orderDetail"
+        [(ngModel)]="newTask.value"
+        p-label="Details:"
+        p-rows="8">
+      </po-textarea>
+    </div>
+
+    <!--Categaoria da Tarefa-->
+    <div>
+      <po-radio-group
+        name="radioGroupBasic"
+        p-label="Categoria"
+        [(ngModel)] = "newTask.category"
+        [p-options]="[{ label: 'Trabalho', value: '1' }, { label: 'Estudos', value: '2' }, { label: 'Finaceiro', value: '3' }]">
+       </po-radio-group>
+    </div>
+
+    
+    <!--Status da Tarefa-->
+    <div>
+      <po-radio-group
+        name="radioGroupBasic"
+        p-label="Status"
+        [(ngModel)] = "newTask.Status"
+        [p-options]="[{ label: 'pendente', value: '1' }, { label: 'concluida', value: '2' },{ label: 'cancelada', value: '3' }]"
+        >
+       </po-radio-group>
+    </div>
+
+    <!--Data da Tarefa-->
+    <div class="po-row datatarefa">
+      <po-info
+        class="po-md-6"
+        p-label="Data da tarefa"
+        [p-value]="newTask.date">
+      </po-info>
+    </div>
+  </form>
+  <po-calendar [(ngModel)]="newTask.date" (p-change)="changeDate(p-change)"></po-calendar>    
+</po-modal>

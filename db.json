@@ -1,0 +1,40 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "tasks": [
+    {
+      "undefined": "",
+      "label": "Treinamento de Javascript",
+      "date": "2020-03-31",
+      "value": "fsdfsdfsdf",
+      "category": "2",
+      "Status": "1",
+      "id": 1
+    }
+  ],
+  "users":[
+    {"login": "nagib",
+      "password": "nagib"
+    }
+  ]
+}

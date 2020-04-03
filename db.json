@@ -25,15 +25,16 @@
     {
       "undefined": "",
       "label": "Treinamento de Javascript",
-      "date": "2020-03-31",
+      "date": "2020-03-12",
       "value": "fsdfsdfsdf",
-      "category": "2",
-      "Status": "1",
+      "category": "1",
+      "Status": "2",
       "id": 1
     }
   ],
-  "users":[
-    {"login": "nagib",
+  "users": [
+    {
+      "login": "nagib",
       "password": "nagib"
     }
   ]

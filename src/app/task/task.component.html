@@ -46,7 +46,7 @@
     <!--Categaoria da Tarefa-->
     <div>
       <po-radio-group
-        name="radioGroupBasic"
+        name="categoria"
         p-label="Categoria"
         [(ngModel)] = "newTask.category"
         [p-options]="[{ label: 'Trabalho', value: '1' }, { label: 'Estudos', value: '2' }, { label: 'Finaceiro', value: '3' }]">
@@ -57,7 +57,7 @@
     <!--Status da Tarefa-->
     <div>
       <po-radio-group
-        name="radioGroupBasic"
+        name="status"
         p-label="Status"
         [(ngModel)] = "newTask.Status"
         [p-options]="[{ label: 'pendente', value: '1' }, { label: 'concluida', value: '2' },{ label: 'cancelada', value: '3' }]"

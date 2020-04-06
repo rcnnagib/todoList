@@ -7,18 +7,16 @@ import { TasksService } from '../tasks.service';
   styleUrls: ['./estudos.component.css']
 })
 export class EstudosComponent implements OnInit {
-
   tasks:Task[]  
+  newTask:Task = {task:"", description:"", date:"", status:"1", category:"2"}
   constructor(private tasksService: TasksService){}
   ngOnInit(){
     console.log("carregando tarefas")
-    this.tasksService.tasks().subscribe(tasks => this.tasks = tasks)
-    
+    this.tasksService.tasks('2').subscribe(tasks => this.tasks = tasks)
   }
   
-  recebeFeeedBack(respostaFilho){    
-    console.log("Essa foi a resposta do meu filho: " + respostaFilho)
-    this.ngOnInit()
+  insertNewTask(task){        
+    this.tasks.push(task)
+    this.newTask = {task:"", description:"", date:"", status:"1", category:"2"}
   }
-  
 }

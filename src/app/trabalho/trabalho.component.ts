@@ -8,15 +8,16 @@ import { Task } from '../task/task.model';
 })
 export class TrabalhoComponent implements OnInit {
   tasks:Task[]  
+  newTask:Task = {task:"", description:"", date:"", status:"1", category:"1"}
   constructor(private tasksService: TasksService){}
   ngOnInit(){
     console.log("carregando tarefas")
-    this.tasksService.tasks().subscribe(tasks => this.tasks = tasks)
+    this.tasksService.tasks('1').subscribe(tasks => this.tasks = tasks)
     
   }
   
-  recebeFeeedBack(respostaFilho){    
-    console.log("Essa foi a resposta do meu filho: " + respostaFilho)
-    this.ngOnInit()
+  insertNewTask(task){        
+    this.tasks.push(task)
+    this.newTask = {task:"", description:"", date:"", status:"1", category:"1"}
   }
 }

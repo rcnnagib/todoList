@@ -12,7 +12,7 @@ import { TasksService } from '../tasks.service';
 })
 export class TaskComponent implements OnInit {
   
-  newTask: Task = {label: "", value:"", date: "", status:"1", category:""} 
+  newTask: Task = {task: "", description:"", date: "", status:"1", category:""} 
   labelExcluir:string = "excluir"
   event: string
   result:string
@@ -24,15 +24,15 @@ export class TaskComponent implements OnInit {
   @ViewChild(PoModalComponent, { static: true }) poModal: PoModalComponent;
   @ViewChild('optionsForm', { static: true }) form: NgForm;
   @Input() task:Task
-  @Input() title:string
+  @Input() action:string
 
 
-  @Output() respostaFamilia = new EventEmitter()
+  @Output() eventNewTask = new EventEmitter()
 
   ngOnInit() {      
     if(!this.task.date){
       this.labelExcluir = ""      
-      this.newTask  = {label: "", value:"", date: "", status:"1", category:""} 
+      this.newTask  = {task: "", description:"", date: "", status:"1", category:""} 
     }
     
   }
@@ -63,7 +63,7 @@ export class TaskComponent implements OnInit {
   //confirma alteracao
   confirm: PoModalAction = {
     action: () => {
-      if(this.task.id){
+      if(this.action == "Editar"){        
         this.alterarTarefa()
       }else{
         this.inserirTarefa()
@@ -74,10 +74,9 @@ export class TaskComponent implements OnInit {
   };
 
   //Envia alteracao para API
-  private alterarTarefa(){    
-    console.log(this.newTask)
+  private alterarTarefa(){        
     this.task = Object.assign({}, this.newTask);
-    this.newTask = {label: "", value:"", date: "", status:"1", category: ""}
+    this.newTask = {task: "", description:"", date: "", status:"1", category: ""}    
     this.tasksService.updateTask(this.task).subscribe(result => this.task = result)
     
   }
@@ -85,15 +84,13 @@ export class TaskComponent implements OnInit {
   
     //salva uma tarefa
     private inserirTarefa(){      
-      console.log(this.task)  
       this.task = Object.assign({}, this.newTask);
-      this.newTask = {label: "", value:"", date: "", status:"1", category:""}   
-      console.log(this.newTask)   
-      this.tasksService.insertTask(this.task).subscribe(result => this.respostaFamilia.emit("resultado da inclusaoo:" + result))            
+      this.newTask = {task: "", description:"", date: "", status:"1", category:""}   
+      this.tasksService.insertTask(this.task).subscribe(result => {console.log(result); this.eventNewTask.emit(this.task)} )            
     }
 
     excluir(){                
-      this.tasksService.deleteTask(this.task).subscribe( result => this.respostaFamilia.emit("resultado da exlusao:" + result)   )           
+      this.tasksService.deleteTask(this.task).subscribe(result => {console.log(result); this.eventNewTask.emit(this.task)} )            
     }
 
 }

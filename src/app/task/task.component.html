@@ -2,21 +2,26 @@
 <po-widget class="task"
   p-height="10"
   
-  [p-title]= "title"
+  [p-title]= "action"
   p-help="help"
   (p-title-action)="editTask()"
   [p-primary-label]="labelExcluir"
   (p-primary-action)="excluir()">
 
   <po-info
-    [p-label]="task.label + ' ' + task.date"
-    [p-value]="task.value">
-  </po-info>                  
+    [p-label]="task.task"
+    [p-value]="task.description" *ngIf="task.task">
+  </po-info>
+  
+  <po-info
+    [p-label]="Data"
+    [p-value]="task.date | date:'dd/MM/yyyy'" *ngIf="task.date">
+  </po-info>
 </po-widget>
 
 <!--Modal para Edicao das tarefas-->
 <po-modal
-  [p-title]="task.label"
+  [p-title]="task.tasks"
   [p-primary-action]="confirm"
   [p-secondary-action]="close">
   
@@ -26,7 +31,7 @@
     <po-input
       class="po-md-6"
       name="label"
-      [(ngModel)]="newTask.label"
+      [(ngModel)]="newTask.task"
       p-clean
       p-label="Tarefa"
       p-required>
@@ -37,22 +42,11 @@
       <po-textarea
         class="po-md-12"
         name="orderDetail"
-        [(ngModel)]="newTask.value"
+        [(ngModel)]="newTask.description"
         p-label="Details:"
         p-rows="8">
       </po-textarea>
     </div>
-
-    <!--Categaoria da Tarefa-->
-    <div>
-      <po-radio-group
-        name="categoria"
-        p-label="Categoria"
-        [(ngModel)] = "newTask.category"
-        [p-options]="[{ label: 'Trabalho', value: '1' }, { label: 'Estudos', value: '2' }, { label: 'Finaceiro', value: '3' }]">
-       </po-radio-group>
-    </div>
-
     
     <!--Status da Tarefa-->
     <div>

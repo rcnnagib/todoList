@@ -1,6 +1,6 @@
 export interface Task{
-    label:string
-    value:string
+    task:string
+    description:string
     date:string
     status:string
     id?:string

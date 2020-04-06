@@ -2,10 +2,10 @@
                     
     <div class="po-xl-12 po-lg-12 po-md-12 po-sm-12 tasks">        
         <div class="po-xl-4 po-lg-4 po-md-4 po-sm-4 task" *ngFor="let task of tasks">
-          <app-task class="task" [task] ="task" title="Editar" (respostaFamilia)="recebeFeeedBack($event)"></app-task>
+          <app-task class="task" [task] ="task" action="Editar" (eventNewTask)="insertNewTask($event)"></app-task>
         </div>
         <div class="po-xl-1 po-lg-1 po-md-1 po-sm-1 task">
-            <app-task class="task" [task]='{label:"", label: "", date: "",value:""}' title="Nova" (respostaFamilia)="recebeFeeedBack($event)"></app-task>
+            <app-task class="task" [task]='newTask' action="Nova" (eventNewTask)="insertNewTask($event)"></app-task>
         </div>                                                
     </div>
 </po-page-list>

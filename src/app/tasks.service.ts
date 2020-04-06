@@ -12,8 +12,8 @@ export class TasksService{
     constructor(private http: HttpClient){}        
     
     //Lista de Tarefas
-    tasks(): Observable<Task[]>{        
-        return this.http.get<Task[]>(`${MEAT_API}/tasks`).pipe(catchError(ErrorHandler.handleError))          
+    tasks(category): Observable<Task[]>{        
+        return this.http.get<Task[]>(`${MEAT_API}/tasks/?category=${category}`).pipe(catchError(ErrorHandler.handleError))          
     }
 
     //Atualizacao das tarefas

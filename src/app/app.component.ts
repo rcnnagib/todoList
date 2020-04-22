@@ -8,12 +8,12 @@ import { PoMenuPanelItem } from '@portinari/portinari-ui';
 })
 export class AppComponent {
 
-  title: string = '';
+  title = '';
 
-  public readonly menuItems: Array<PoMenuPanelItem> = [    
-    { label: 'Trabalho', action: this.changeTitle, icon: 'po-icon-clock', link:"/trabalho" },
-    { label: 'Estudos', action: this.changeTitle, icon: 'po-icon-book', link:"/estudos" },
-    { label: 'financeiro', action: this.changeTitle, icon: 'po-icon-finance', link:"/financeiro"  }
+  public readonly menuItems: Array<PoMenuPanelItem> = [
+    { label: 'Trabalho', action: this.changeTitle, icon: 'po-icon-clock', link: '/trabalho' },
+    { label: 'Estudos', action: this.changeTitle, icon: 'po-icon-book', link: '/estudos' },
+    { label: 'financeiro', action: this.changeTitle, icon: 'po-icon-finance', link: '/financeiro'  }
   ];
 
   changeTitle(menu: PoMenuPanelItem) {
